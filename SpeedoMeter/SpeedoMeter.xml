@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component xmlns="http://www.red5studios.com/"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.red5studios.com/ ../../../../schemas/component.xsd">
+	<Info
+		title="SpeedoMeter"
+		author="Rhef"
+		description="Shows Your speed on HUD"
+		url=""
+		uiVersion="1000"
+	/>
+
+	<Events>
+		<Event name="ON_COMPONENT_LOAD"				bind="OnComponentLoad" />	
+		<Event name="MY_HUD_SHOW"					bind="OnShow"/>
+		<Event name="ON_PLAYER_GLIDE"				bind="OnPlayerGlide"/>
+	</Events>
+	
+	<BluePrints>
+		<Blueprint name="speedometerpanel_xy">
+			<!-- Text -->
+			<Text name="Text" dimensions="right:0%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{XY:}"/>
+
+			<!-- Values -->
+			<Text name="Value" dimensions="left:100%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{0.00/s}"/>
+		</Blueprint>
+		<Blueprint name="speedometerpanel_z">
+			<!-- Text -->
+			<Text name="Text" dimensions="right:0%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{Z:}"/>
+
+			<!-- Values -->
+			<Text name="Value" dimensions="left:100%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{0.00/s}"/>
+		</Blueprint>
+		<Blueprint name="speedometerpanel_xy_accel">
+			<!-- Text -->
+			<Text name="Text" dimensions="right:0%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{XY:}"/>
+
+			<!-- Values -->
+			<Text name="Value" dimensions="left:100%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{0.00/s^2}"/>
+		</Blueprint>
+		<Blueprint name="speedometerpanel_z_accel">
+			<!-- Text -->
+			<Text name="Text" dimensions="right:0%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{Z:}"/>
+
+			<!-- Values -->
+			<Text name="Value" dimensions="left:100%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{0.00/s^2}"/>
+		</Blueprint>
+		<Blueprint name="speedometerpanel_efficiency">
+			<!-- Text -->
+			<Text name="Text" dimensions="right:0%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{E:}"/>
+
+			<!-- Values -->
+			<Text name="Value" dimensions="left:100%; center-y:50%; width:100%; height:20;" style="font:Demi_12; halign:right; valign:center; clip:false; wrap:false; alpha:0.8; padding:2" key="{0.00}"/>
+		</Blueprint>
+	</BluePrints>
+	
+	<Frames>
+		<HUDFrame name="SM_XY" dimensions="top:50%-10; left:50%+70; height:20; width:100" cwidth="100" cheight="100" visible="true">
+			<Children>
+				<Group id="SM_XY" dimensions="height:50%; width:50%; center-y:50%; center-x:50%" blueprint="speedometerpanel_xy" />
+			</Children>
+			<OnMessage bind="OnMessage"/>
+		</HUDFrame>
+		<HUDFrame name="SM_Z" dimensions="top:50%-70; left:50%-50; height:20; width:100" cwidth="100" cheight="100" visible="true">
+			<Children>
+				<Group id="SM_Z" dimensions="height:50%; width:50%; center-y:50%; center-x:50%" blueprint="speedometerpanel_z" />
+			</Children>
+			<OnMessage bind="OnMessage"/>
+		</HUDFrame>
+		<HUDFrame name="SM_XY_ACCEL" dimensions="top:50%-10; left:50%-190; height:20; width:110" cwidth="100" cheight="100" visible="true">
+			<Children>
+				<Group id="SM_XY_ACCEL" dimensions="height:50%; width:50%; center-y:50%; center-x:50%" blueprint="speedometerpanel_xy_accel" />
+			</Children>
+			<OnMessage bind="OnMessage"/>
+		</HUDFrame>
+		<HUDFrame name="SM_Z_ACCEL" dimensions="top:50%+50; left:50%-50; height:20; width:110" cwidth="100" cheight="100" visible="true">
+			<Children>
+				<Group id="SM_Z_ACCEL" dimensions="height:50%; width:50%; center-y:50%; center-x:50%" blueprint="speedometerpanel_z_accel" />
+			</Children>
+			<OnMessage bind="OnMessage"/>
+		</HUDFrame>
+		<HUDFrame name="SM_EFFICIENCY" dimensions="top:50%-100; left:50%-60; height:20; width:80" cwidth="100" cheight="100" visible="true">
+			<Children>
+				<Group id="SM_EFFICIENCY" dimensions="height:50%; width:50%; center-y:50%; center-x:50%" blueprint="speedometerpanel_efficiency" />
+			</Children>
+			<OnMessage bind="OnMessage"/>
+		</HUDFrame>
+	</Frames>
+
+</Component>
